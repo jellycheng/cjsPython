@@ -20,7 +20,10 @@ def parse_dotenv(dotenv_path):
             v = v.strip("'").strip('"')
             yield k, v
 
-
+def initEnv():
+    _d = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    #print _d + '.env'
+    load_dotenv(_d + '.env')
 
 
 
