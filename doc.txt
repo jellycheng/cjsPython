@@ -6,3 +6,25 @@ BDD测试框架
 Cucumber在多个编程语言下均有语法解析的实现，
 JAVA是：https://github.com/cucumber/gherkin，
 PHP是：Behat，GITHUB：https://github.com/Behat/Gherkin
+PHP版的Cucumber项目叫Behat
+
+php composer.json配置
+{
+	"name" : "cjs/api-test-php",
+	"description" : "cucumber for api test",
+	"require-dev" : {
+		"phpunit/phpunit" : "~5.4",
+		"peekmo/jsonpath" : "dev-master",
+		"behat/behat" : "~3.1.0"
+	},
+	"authors" : [{
+			"name" : "cjs",
+			"email" : "xxx@qq.com"
+		}
+	],
+	"autoload" : {
+		"files" : [
+			"vendor/phpunit/phpunit/src/Framework/Assert/Functions.php"
+		]
+	}
+}
