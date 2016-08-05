@@ -1,0 +1,8 @@
+
+
+1.测试工具 http://mock-api.com/quickmanual.html
+          https://cucumber.io/
+2. http://docs.behat.org/en/v3.0/
+Cucumber在多个编程语言下均有语法解析的实现，
+JAVA是：https://github.com/cucumber/gherkin，
+PHP是：Behat，GITHUB：https://github.com/Behat/Gherkin
