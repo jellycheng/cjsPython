@@ -1,0 +1,34 @@
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+<div style="text-align:center;margin-top:200px;">
+	<div onclick="viewTxl();">window.open弹窗查看通讯录</div>
+</div>
+
+</body>
+</html>
+<script type="text/javascript">
+	var _i = 0;
+	function viewTxl() {
+		if(_i) {
+			return false;
+		}
+		_i = 1;
+		window.open('tongxunlu.html?uid=123&borrow=', '', 'width=772,height=270,resize=0,scrollbars=0,location=no');
+		setTimeout(function(){
+			_i = 0;
+		}, 1000);
+	}
+
+
+function isNull(obj,defaultValue){
+	if(obj=="undefined" || obj==null || obj==""){
+		obj = (defaultValue==null?"":defaultValue);
+	}
+	return obj;
+}
+
+</script>
