@@ -1,0 +1,67 @@
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<h3>openssl生产key</h3>
+<pre>
+openssl工具： 支持windows，linux，mac等版本
+https://www.openssl.org/
+源码： https://github.com/openssl/openssl
+安装openssl命令： 
+	1. yum -y install openssl openssl-devel
+		rpm -ql openssl
+		rpm -qa openssl
+		#yum search openssl
+		#sudo apt-get install openssl libssl-dev
+	2. 源码安装 
+		./config --prefix=/usr/local/openssl
+		make && make install
+
+支付宝有windows版本的openssl工具： https://doc.open.alipay.com/doc2/detail.htm?spm=a219a.7629140.0.0.IF4yzN&treeId=58&articleId=103242&docType=1
+
+生成RSA私钥：
+1. 在命令行输入 openssl 回车 进入openssl
+2.在openssl命令中执行一下命令： 
+	#命令格式：genrsa -out 私钥文件名.pem 1024
+    如：genrsa -out rsa_private_key.pem 1024
+生成RSA公钥： 通过私钥生成公钥
+	#命令格式： rsa -in 私钥文件名.pem -pubout -out 公钥文件名.pem
+	如：rsa -in rsa_private_key.pem -pubout -out rsa_public_key.pem
+将RSA私钥转换成PKCS8格式
+	#命令格式： pkcs8 -topk8 -inform PEM -in 私钥文件名.pem -outform PEM -nocrypt
+	如：pkcs8 -topk8 -inform PEM -in rsa_private_key.pem -outform PEM -nocrypt
+OpenSSL> pkcs8 -topk8 -inform PEM -in rsa_private_key.pem -outform PEM -nocrypt
+-----BEGIN PRIVATE KEY-----
+MIICdQIBADANBgkqhkiG9w0BAQEFAASCAl8wggJbAgEAAoGBAKYAO8uBho54M7fL
+86qfdP7PN+lRWQKQ5YmrxMJN9fIg1Mqu5aWw6dV8qTaxNgiyC1xm2i7ISzGuKwVM
+Cyu4IxwppH80fL76aMqGlUevxZDgGFGuTGv3kf9lgPzBsmYwlIj2Fv5d9xwAeE9n
+4pn9K5Gzkrb3aJpUaVE/dZbJmcrZAgMBAAECgYBnxEeci+gX0O3LW7OCmdDho5j4
+wUAZyYeiynvhViiC5aD+3dtx+qgBKr8AEECNqPZPGYATtGLEuHHuCr4E40MWSntw
+k0c9hZg6VPlNbEGHaNHWnjUz5Qqxp6xYx5jlDfPkJSZRkyrw6/9y/E5+b4e7kQNa
+uuE1AvBhy66Nc1O+bQJBANtnF9Qlb2IsURClzrr4Lr9FJcsGS8AGNg8wZGqafzcB
+fD+A3kBOYN+dCoRhdmODB+AWCWrg7Ys6JFHt93Wcpq8CQQDBsMii7+RwY2sTCsi6
+BNUJo8oPeuDx7EpmexXBsijIihTy9fEqIo9BRg6kqx750nY8wDMBhEHo04/CtCOR
+mIj3AkAM1dklBhOgEKulZ63SblZ9xhPR7spbr4FWHiShv+wVUbbtGCLobC1qp4tH
+91OvuqipSWC/qez7qikZyewiK0ntAkB9gjOQuYg6d4GztiI5v9XYSEUv4L0Qpr/T
+RmDjwbGBuVA327ypQ/m2H1Jvy97nnUQ2u4iRrAUVfLnEPfxqZQAjAkAmIr3hbb9x
+DBEp5Uxi5ur9UTzOuLRRKAG9mpjmjQdKX2ANe1YlKSrG2pogObqaCwm1sIciigVM
+OizNKlcLyNF8
+-----END PRIVATE KEY-----
+OpenSSL> exit
+此时在当前文件夹中（OpenSSL运行文件夹），看到rsa_private_key.pem（RSA私钥）、rsa_private_key_pkcs8.pem（pkcs8格式RSA私钥）和rsa_public_key.pem（对应RSA公钥）3个文件
+
+DSA私钥及公钥生成：
+	在命令行输入 openssl 回车 进入openssl
+	OpenSSL> dsaparam -out dsa_param.pem 1024   #生成参数文件，其中文件名dsa_param.pem
+	OpenSSL> gendsa -out dsa_private_key.pem dsa_param.pem #通过参数文件生成私钥 其中dsa_param.pem是参数文件，dsa_private_key.pem是私钥文件名
+	OpenSSL> pkcs8 -topk8 -inform PEM -in dsa_private_key.pem -outform PEM -nocrypt -out dsa_private_key_pkcs8.pem  #Java开发者需要将私钥转换成PKCS8格式 
+	OpenSSL> dsa -in dsa_private_key_pkcs8.pem -pubout -out dsa_public_key.pem #生成公钥
+	OpenSSL> exit #退出OpenSSL程序
+此时在当前文件夹中（OpenSSL运行文件夹），看到dsa_private_key.pem（DSA私钥）、dsa_private_key_pkcs8.pem（pkcs8格式DSA私钥）、dsa_public_key.pem（对应DSA公钥）和dsa_param.pem（参数文件）4个文件
+
+
+</pre>
+
+</body>
+</html>
