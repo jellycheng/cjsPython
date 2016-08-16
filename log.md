@@ -1,5 +1,5 @@
 ###日志相关技术
-* Flume、Kafka、scribe、chukwa、Storm和ElasticSearch等技术
+* Flume、Kafka、scribe、chukwa、Storm、ElasticSearch、rsyslog等技术
 * flume-ng+Hadoop实现日志收集 
 * ELK日志收集： E=ElasticSearch， L=LogStash，K=Kibana 
 ``` 
