@@ -30,6 +30,8 @@
                 "form_type":"参数在表单中展示类型，默认text，上传文件为file，textarea，radio，checkbox"
             },{...}
         ],
+        "response_cookie":“响应cookie”，
+        "response_header":“响应头”，
         "response_type":“响应结果类型，字符串，xml，json”，
         "response_val":[#响应结果
             {
@@ -52,4 +54,10 @@
   2. 项目成员
 接口管理： 接口基本信息，接口所属项目，
 批量导出接口为pdf，word，excel文档
+帐号管理
+部门组织架构
+接口设计参考：
+参考postman
+微信api
+http://rap.taobao.org/
 
