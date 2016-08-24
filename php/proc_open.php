@@ -33,9 +33,9 @@ $descriptorspec = array(
 
 $cwd = '/tmp';
 $env = array('some_option' => 'hi');
-$process = proc_open('php', $descriptorspec, $pipes, $cwd, $env);
+$process = proc_open('D:\php-5.6.15\php.EXE', $descriptorspec, $pipes, $cwd, $env);
 if (is_resource($process)) {
-    fwrite($pipes[0], '<?php print_r($_ENV); ?>'); //向管道写内容
+    fwrite($pipes[0], "<?php print_r(\$_ENV);echo getenv('some_option').PHP_EOL; ?>"); //向管道写内容
     fclose($pipes[0]);//关闭
 
     $con = stream_get_contents($pipes[1]);//从读管道中读内容
